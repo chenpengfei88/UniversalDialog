@@ -10,6 +10,7 @@ import android.view.View;
 import com.free.universaldialog.base.IDialog;
 import com.free.universaldialog.listener.OnItemClickListener;
 import com.free.universaldialog.listener.OnSureCancelClickListener;
+import com.free.universaldialog.listener.OnSureClickListener;
 import com.free.universaldialog.widget.AlterDialog;
 import com.free.universaldialog.widget.AlterSelectDialog;
 import com.free.universaldialog.widget.SelectDialog;
@@ -60,8 +61,12 @@ public class UniversalDialog {
     public final int yoff;
     public final int x;
     public final int y;
+    public final int popupWindowAlpha;
+    public final int divideColor;
+    public final int divideHeight;
 
     public final OnSureCancelClickListener onSureCancelClickListener;
+    public final OnSureClickListener onSureClickListener;
     public final OnItemClickListener onItemClickListener;
 
     public UniversalDialog(Builder builder) {
@@ -99,8 +104,12 @@ public class UniversalDialog {
         this.yoff = builder.yoff;
         this.x = builder.x;
         this.y = builder.y;
+        this.popupWindowAlpha = builder.popupWindowAlpha;
+        this.divideHeight = builder.divideHeight;
+        this.divideColor = builder.divideColor;
 
         this.onSureCancelClickListener = builder.onSureCancelClickListener;
+        this.onSureClickListener = builder.onSureClickListener;
         this.onItemClickListener = builder.onItemClickListener;
 
         createDialog();
@@ -119,6 +128,9 @@ public class UniversalDialog {
                 break;
             case POPUPWINDOW_SELECT_TYPE:
                 dialog = new SelectPopupWindow();
+                break;
+            default:
+                dialog = new AlterDialog();
                 break;
         }
     }
@@ -166,15 +178,17 @@ public class UniversalDialog {
         private int x;
         private int y;
         private int dialogType;
-        private int gravity = Gravity.CENTER;
+        private int gravity;
+        private int popupWindowAlpha;
+        private int divideColor;
+        private int divideHeight;
 
-
+        private OnSureClickListener onSureClickListener;
         private OnSureCancelClickListener onSureCancelClickListener;
         private OnItemClickListener onItemClickListener;
 
         public Builder(Context context) {
             this.context = context;
-            this.dialogType = DIALOG_ALTER_TYPE;
             this.titleSize = 18;
             this.titleColor = Color.parseColor("#333333");
             this.messageSize = 16;
@@ -183,6 +197,10 @@ public class UniversalDialog {
             this.sureButtonColor = Color.RED;
             this.cancelButtonSize = 14;
             this.cancelButtonColor = Color.parseColor("#919191");
+            this.popupWindowAlpha = 160;
+            this.gravity = Gravity.CENTER;
+            this.divideColor = Color.parseColor("#C7C7C7");
+            this.divideHeight = 1;
         }
 
         public Builder setTitle(String title) {
@@ -369,6 +387,21 @@ public class UniversalDialog {
             return this;
         }
 
+        public Builder setPopupWindowAlpha(int popupWindowAlpha) {
+            this.popupWindowAlpha = popupWindowAlpha;
+            return this;
+        }
+
+        public Builder setDivideColor(int divideColor) {
+            this.divideColor = divideColor;
+            return this;
+        }
+
+        public Builder setDivideHeight(int divideHeight) {
+            this.divideHeight = divideHeight;
+            return this;
+        }
+
         public Builder setDialogType(int dialogType) {
             this.dialogType = dialogType;
             return this;
@@ -386,6 +419,11 @@ public class UniversalDialog {
 
         public Builder setOnSureCancelClickListener(OnSureCancelClickListener onSureCancelClickListener) {
             this.onSureCancelClickListener = onSureCancelClickListener;
+            return this;
+        }
+
+        public Builder setOnSureClickListener(OnSureClickListener onSureClickListener) {
+            this.onSureClickListener = onSureClickListener;
             return this;
         }
 

@@ -5,7 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Toast;
 import com.free.universaldialog.UniversalDialog;
+import com.free.universaldialog.listener.OnSureClickListener;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -29,6 +31,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                            .setMessage("确认关掉我吗？")
                             .setSureButton("确定")
                             .setCancelButton("不关")
+                            .setOnSureClickListener(new OnSureClickListener() {
+                                @Override
+                                public void onSure() {
+                                    Toast.makeText(MainActivity.this, "Sure", Toast.LENGTH_SHORT).show();
+                                }
+                            })
                              .create().show();
                 break;
             case R.id.textview_select_alert:

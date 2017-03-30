@@ -21,7 +21,8 @@ public abstract class AbsDialog implements IDialog {
         mDialog.setCanceledOnTouchOutside(universalDialog.canceledOnTouchOutside);
         mDialog.setCancelable(universalDialog.cancelable);
         Window localWindow = mDialog.getWindow();
-        localWindow.setWindowAnimations(universalDialog.animation);
+        if (universalDialog.animation != 0)
+            localWindow.setWindowAnimations(universalDialog.animation);
         localWindow.setGravity(universalDialog.gravity);
         localWindow.setBackgroundDrawableResource(android.R.color.transparent);
         WindowManager.LayoutParams lp = localWindow.getAttributes();

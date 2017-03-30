@@ -41,6 +41,7 @@ public class AlterDialog extends AbsDialog {
             public void onClick(View v) {
                 mDialog.cancel();
                 if (universalDialog.onSureCancelClickListener != null) universalDialog.onSureCancelClickListener.onSure();
+                if (universalDialog.onSureClickListener != null) universalDialog.onSureClickListener.onSure();
             }
         });
 

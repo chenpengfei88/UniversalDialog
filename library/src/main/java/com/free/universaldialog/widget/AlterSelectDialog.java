@@ -28,7 +28,7 @@ public class AlterSelectDialog extends AbsDialog {
                 TextView itemTextView = getItemTextView(universalDialog, itemArray[i]);
                 containerLl.addView(itemTextView);
                 if (i != length - 1)
-                    containerLl.addView(getDivideLineView(universalDialog.context));
+                    containerLl.addView(getDivideLineView(universalDialog));
 
                 final int position = i;
                 itemTextView.setOnClickListener(new View.OnClickListener() {
@@ -61,10 +61,10 @@ public class AlterSelectDialog extends AbsDialog {
         return itemTextView;
     }
 
-    private View getDivideLineView(Context context) {
-        View divideLine = new View(context);
-        divideLine.setBackgroundColor(Color.parseColor("#C7C7C7"));
-        RelativeLayout.LayoutParams lineLp = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1);
+    private View getDivideLineView(UniversalDialog universalDialog) {
+        View divideLine = new View(universalDialog.context);
+        divideLine.setBackgroundColor(universalDialog.divideColor);
+        RelativeLayout.LayoutParams lineLp = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, universalDialog.divideHeight);
         divideLine.setLayoutParams(lineLp);
         return divideLine;
     }
