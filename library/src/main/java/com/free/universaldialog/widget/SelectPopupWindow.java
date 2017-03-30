@@ -50,11 +50,21 @@ public class SelectPopupWindow extends AbsPopupWindow {
             }
         }
 
+        if (universalDialog.cancelable) {
+            rootLl.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mPopupWindow.dismiss();
+                }
+            });
+        }
+
         initPopupWindow(universalDialog, contentView);
     }
 
     @Override
     protected void showLocation(UniversalDialog universalDialog) {
+        if (universalDialog.anchorView == null) return;
         mPopupWindow.showAsDropDown(universalDialog.anchorView);
         LinearLayout.LayoutParams containerLlLp = (LinearLayout.LayoutParams) containerLl.getLayoutParams();
         if (universalDialog.showAsDropDownXy) {

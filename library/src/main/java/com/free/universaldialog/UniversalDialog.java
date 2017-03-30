@@ -1,6 +1,7 @@
 package com.free.universaldialog;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DimenRes;
 import android.support.annotation.StringRes;
@@ -102,6 +103,10 @@ public class UniversalDialog {
         this.onSureCancelClickListener = builder.onSureCancelClickListener;
         this.onItemClickListener = builder.onItemClickListener;
 
+        createDialog();
+    }
+
+    private void createDialog() {
         switch (dialogType) {
             case DIALOG_ALTER_TYPE:
                 dialog = new AlterDialog();
@@ -116,7 +121,6 @@ public class UniversalDialog {
                 dialog = new SelectPopupWindow();
                 break;
         }
-
     }
 
     public void show() {
@@ -170,6 +174,15 @@ public class UniversalDialog {
 
         public Builder(Context context) {
             this.context = context;
+            this.dialogType = DIALOG_ALTER_TYPE;
+            this.titleSize = 18;
+            this.titleColor = Color.parseColor("#333333");
+            this.messageSize = 16;
+            this.messageColor = Color.parseColor("#919191");
+            this.sureButtonSize = 14;
+            this.sureButtonColor = Color.RED;
+            this.cancelButtonSize = 14;
+            this.cancelButtonColor = Color.parseColor("#919191");
         }
 
         public Builder setTitle(String title) {
