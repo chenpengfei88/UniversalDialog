@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.textview_bottom).setOnClickListener(this);
         findViewById(R.id.textview_top).setOnClickListener(this);
         findViewById(R.id.textview_tip).setOnClickListener(this);
+        findViewById(R.id.textview_tip_pop).setOnClickListener(this);
     }
 
     @Override
@@ -63,7 +64,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .create().show();
                 break;
             case R.id.textview_tip:
-                builder.customDialog(new TipDialog(this)).show();
+                builder.customDialog(new TipDialog(this)).create().show();
+                break;
+            case R.id.textview_tip_pop:
+                builder.setAsDropDown(findViewById(R.id.textview_bar)).
+                        customPopupWindow(new TipPopupWindow(this)).create().show();
                 break;
             default:
                 break;

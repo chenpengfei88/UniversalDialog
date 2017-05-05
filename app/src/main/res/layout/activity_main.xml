@@ -42,4 +42,9 @@
         style="@style/style_text"
         android:text="提示对话框" />
 
+    <TextView
+        android:id="@+id/textview_tip_pop"
+        style="@style/style_text"
+        android:text="提示PopupWindow" />
+
 </LinearLayout>

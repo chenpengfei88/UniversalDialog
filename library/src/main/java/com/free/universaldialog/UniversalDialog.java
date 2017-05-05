@@ -9,6 +9,7 @@ import android.view.Gravity;
 import android.view.View;
 
 import com.free.universaldialog.base.ICustomDialog;
+import com.free.universaldialog.base.ICustomPopupWindow;
 import com.free.universaldialog.base.IDialog;
 import com.free.universaldialog.listener.OnItemClickListener;
 import com.free.universaldialog.listener.OnSureCancelClickListener;
@@ -16,6 +17,7 @@ import com.free.universaldialog.listener.OnSureClickListener;
 import com.free.universaldialog.widget.AlterDialog;
 import com.free.universaldialog.widget.AlterSelectDialog;
 import com.free.universaldialog.widget.CustomDialog;
+import com.free.universaldialog.widget.CustomPopupWindow;
 import com.free.universaldialog.widget.SelectDialog;
 import com.free.universaldialog.widget.SelectPopupWindow;
 
@@ -69,6 +71,7 @@ public class UniversalDialog {
     public final int divideHeight;
 
     public final ICustomDialog customDialog;
+    public final ICustomPopupWindow customPopupWindow;
 
     public final OnSureCancelClickListener onSureCancelClickListener;
     public final OnSureClickListener onSureClickListener;
@@ -118,6 +121,7 @@ public class UniversalDialog {
         this.onItemClickListener = builder.onItemClickListener;
 
         customDialog = builder.customDialog;
+        customPopupWindow = builder.customPopupWindow;
 
         createDialog();
     }
@@ -137,16 +141,21 @@ public class UniversalDialog {
                 dialog = new SelectPopupWindow();
                 break;
             default:
-                dialog = new CustomDialog();
+                if (customDialog != null)
+                    dialog = new CustomDialog();
+                if (customPopupWindow != null)
+                    dialog = new CustomPopupWindow();
                 break;
         }
     }
 
     public void show() {
+        if (dialog == null) return;
         dialog.show(this);
     }
 
     public void cancel() {
+        if (dialog == null) return;
         dialog.cancel();
     }
 
@@ -191,6 +200,7 @@ public class UniversalDialog {
         private int divideHeight;
 
         private ICustomDialog customDialog;
+        private ICustomPopupWindow customPopupWindow;
 
         private OnSureClickListener onSureClickListener;
         private OnSureCancelClickListener onSureCancelClickListener;
@@ -436,9 +446,14 @@ public class UniversalDialog {
             return this;
         }
 
-        public UniversalDialog customDialog(ICustomDialog customDialog) {
+        public Builder customDialog(ICustomDialog customDialog) {
             this.customDialog = customDialog;
-            return new UniversalDialog(this);
+            return this;
+        }
+
+        public Builder customPopupWindow(ICustomPopupWindow customPopupWindow) {
+            this.customPopupWindow = customPopupWindow;
+            return this;
         }
 
         public UniversalDialog create() {
