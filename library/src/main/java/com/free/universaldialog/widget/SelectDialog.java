@@ -1,7 +1,5 @@
 package com.free.universaldialog.widget;
 
-import android.content.Context;
-import android.graphics.Color;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.free.universaldialog.R;
 import com.free.universaldialog.UniversalDialog;
 import com.free.universaldialog.base.AbsDialog;

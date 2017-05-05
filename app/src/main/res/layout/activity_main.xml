@@ -37,4 +37,9 @@
         style="@style/style_text"
         android:text="头部对话框" />
 
+    <TextView
+        android:id="@+id/textview_tip"
+        style="@style/style_text"
+        android:text="提示对话框" />
+
 </LinearLayout>

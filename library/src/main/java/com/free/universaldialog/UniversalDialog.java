@@ -7,12 +7,15 @@ import android.support.annotation.DimenRes;
 import android.support.annotation.StringRes;
 import android.view.Gravity;
 import android.view.View;
+
+import com.free.universaldialog.base.ICustomDialog;
 import com.free.universaldialog.base.IDialog;
 import com.free.universaldialog.listener.OnItemClickListener;
 import com.free.universaldialog.listener.OnSureCancelClickListener;
 import com.free.universaldialog.listener.OnSureClickListener;
 import com.free.universaldialog.widget.AlterDialog;
 import com.free.universaldialog.widget.AlterSelectDialog;
+import com.free.universaldialog.widget.CustomDialog;
 import com.free.universaldialog.widget.SelectDialog;
 import com.free.universaldialog.widget.SelectPopupWindow;
 
@@ -65,6 +68,8 @@ public class UniversalDialog {
     public final int divideColor;
     public final int divideHeight;
 
+    public final ICustomDialog customDialog;
+
     public final OnSureCancelClickListener onSureCancelClickListener;
     public final OnSureClickListener onSureClickListener;
     public final OnItemClickListener onItemClickListener;
@@ -112,6 +117,8 @@ public class UniversalDialog {
         this.onSureClickListener = builder.onSureClickListener;
         this.onItemClickListener = builder.onItemClickListener;
 
+        customDialog = builder.customDialog;
+
         createDialog();
     }
 
@@ -130,7 +137,7 @@ public class UniversalDialog {
                 dialog = new SelectPopupWindow();
                 break;
             default:
-                dialog = new AlterDialog();
+                dialog = new CustomDialog();
                 break;
         }
     }
@@ -182,6 +189,8 @@ public class UniversalDialog {
         private int popupWindowAlpha;
         private int divideColor;
         private int divideHeight;
+
+        private ICustomDialog customDialog;
 
         private OnSureClickListener onSureClickListener;
         private OnSureCancelClickListener onSureCancelClickListener;
@@ -425,6 +434,11 @@ public class UniversalDialog {
         public Builder setOnSureClickListener(OnSureClickListener onSureClickListener) {
             this.onSureClickListener = onSureClickListener;
             return this;
+        }
+
+        public UniversalDialog customDialog(ICustomDialog customDialog) {
+            this.customDialog = customDialog;
+            return new UniversalDialog(this);
         }
 
         public UniversalDialog create() {

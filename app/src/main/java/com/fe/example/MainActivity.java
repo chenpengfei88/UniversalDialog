@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.textview_select_alert).setOnClickListener(this);
         findViewById(R.id.textview_bottom).setOnClickListener(this);
         findViewById(R.id.textview_top).setOnClickListener(this);
+        findViewById(R.id.textview_tip).setOnClickListener(this);
     }
 
     @Override
@@ -60,6 +61,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setItemArray(new String[] {"拍照", "相册", "视频"})
                         .setCancelable(true)
                         .create().show();
+                break;
+            case R.id.textview_tip:
+                builder.customDialog(new TipDialog(this)).show();
                 break;
             default:
                 break;
