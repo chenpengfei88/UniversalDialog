@@ -97,8 +97,4 @@ public class SelectPopupWindow extends AbsPopupWindow {
         return divideLine;
     }
 
-    @Override
-    public void cancel() {
-
-    }
 }

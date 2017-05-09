@@ -33,4 +33,12 @@ public abstract class AbsDialog implements IDialog {
         if (mDialog != null && !mDialog.isShowing())
             mDialog.show();
     }
+
+    @Override
+    public void cancel() {
+        if (mDialog != null && mDialog.isShowing())
+              mDialog.cancel();
+    }
+
+
 }

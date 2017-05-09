@@ -64,8 +64,4 @@ public class SelectDialog extends AbsDialog {
         return divideLine;
     }
 
-    @Override
-    public void cancel() {
-
-    }
 }

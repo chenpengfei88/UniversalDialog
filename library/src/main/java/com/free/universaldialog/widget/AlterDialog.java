@@ -40,8 +40,8 @@ public class AlterDialog extends AbsDialog {
             @Override
             public void onClick(View v) {
                 mDialog.cancel();
-                if (universalDialog.onSureCancelClickListener != null) universalDialog.onSureCancelClickListener.onSure();
-                if (universalDialog.onSureClickListener != null) universalDialog.onSureClickListener.onSure();
+                if (universalDialog.onSureCancelClickListener != null) universalDialog.onSureCancelClickListener.onSure(v);
+                if (universalDialog.onSureClickListener != null) universalDialog.onSureClickListener.onSure(v);
             }
         });
 
@@ -53,15 +53,11 @@ public class AlterDialog extends AbsDialog {
             @Override
             public void onClick(View v) {
                 mDialog.cancel();
-                if (universalDialog.onSureCancelClickListener != null) universalDialog.onSureCancelClickListener.onCancel();
+                if (universalDialog.onSureCancelClickListener != null) universalDialog.onSureCancelClickListener.onCancel(v);
             }
         });
 
         initDialog(universalDialog, contentView);
     }
 
-    @Override
-    public void cancel() {
-
-    }
 }

@@ -4,11 +4,10 @@ package com.free.universaldialog.widget;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
-
 import com.free.universaldialog.R;
 import com.free.universaldialog.UniversalDialog;
 import com.free.universaldialog.base.AbsPopupWindow;
-import com.free.universaldialog.base.ICustomPopupWindow;
+import com.free.universaldialog.base.AbsCustomPopupWindow;
 
 /**
  * Created by chenpengfei on 2017/5/5.
@@ -19,7 +18,7 @@ public class CustomPopupWindow extends AbsPopupWindow {
 
     @Override
     public void show(UniversalDialog universalDialog) {
-        ICustomPopupWindow customPopupWindow = universalDialog.customPopupWindow;
+        AbsCustomPopupWindow customPopupWindow = universalDialog.customPopupWindow;
         if (customPopupWindow == null) return;
 
         View contentView = LayoutInflater.from(universalDialog.context).inflate(R.layout.popupwindow_select, null);

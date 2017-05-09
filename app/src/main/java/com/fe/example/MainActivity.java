@@ -5,8 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 import com.free.universaldialog.UniversalDialog;
+import com.free.universaldialog.listener.OnSureCancelClickListener;
 import com.free.universaldialog.listener.OnSureClickListener;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -20,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.textview_select_alert).setOnClickListener(this);
         findViewById(R.id.textview_bottom).setOnClickListener(this);
         findViewById(R.id.textview_top).setOnClickListener(this);
-        findViewById(R.id.textview_tip).setOnClickListener(this);
+        findViewById(R.id.textview_add).setOnClickListener(this);
         findViewById(R.id.textview_tip_pop).setOnClickListener(this);
     }
 
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             .setCancelButton("不关")
                             .setOnSureClickListener(new OnSureClickListener() {
                                 @Override
-                                public void onSure() {
+                                public void onSure(View view) {
                                     Toast.makeText(MainActivity.this, "Sure", Toast.LENGTH_SHORT).show();
                                 }
                             })
@@ -63,8 +65,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setCancelable(true)
                         .create().show();
                 break;
-            case R.id.textview_tip:
-                builder.customDialog(new TipDialog(this)).create().show();
+            case R.id.textview_add:
+                final AddDialog addDialog = new AddDialog(this);
+                builder.customDialog(addDialog).setOnSureCancelClickListener(new OnSureCancelClickListener() {
+                    @Override
+                    public void onSure(View view) {
+                       EditText editText = (EditText) addDialog.getContentView().findViewById(R.id.edittext_name);
+                        Toast.makeText(MainActivity.this, editText.getText().toString(), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onCancel(View view) {
+
+                    }
+                }).create().show();
                 break;
             case R.id.textview_tip_pop:
                 builder.setAsDropDown(findViewById(R.id.textview_bar)).

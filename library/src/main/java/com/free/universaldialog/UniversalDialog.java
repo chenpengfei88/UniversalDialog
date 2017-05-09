@@ -7,9 +7,8 @@ import android.support.annotation.DimenRes;
 import android.support.annotation.StringRes;
 import android.view.Gravity;
 import android.view.View;
-
-import com.free.universaldialog.base.ICustomDialog;
-import com.free.universaldialog.base.ICustomPopupWindow;
+import com.free.universaldialog.base.AbsCustomDialog;
+import com.free.universaldialog.base.AbsCustomPopupWindow;
 import com.free.universaldialog.base.IDialog;
 import com.free.universaldialog.listener.OnItemClickListener;
 import com.free.universaldialog.listener.OnSureCancelClickListener;
@@ -70,8 +69,8 @@ public class UniversalDialog {
     public final int divideColor;
     public final int divideHeight;
 
-    public final ICustomDialog customDialog;
-    public final ICustomPopupWindow customPopupWindow;
+    public final AbsCustomDialog customDialog;
+    public final AbsCustomPopupWindow customPopupWindow;
 
     public final OnSureCancelClickListener onSureCancelClickListener;
     public final OnSureClickListener onSureClickListener;
@@ -199,8 +198,8 @@ public class UniversalDialog {
         private int divideColor;
         private int divideHeight;
 
-        private ICustomDialog customDialog;
-        private ICustomPopupWindow customPopupWindow;
+        private AbsCustomDialog customDialog;
+        private AbsCustomPopupWindow customPopupWindow;
 
         private OnSureClickListener onSureClickListener;
         private OnSureCancelClickListener onSureCancelClickListener;
@@ -446,12 +445,12 @@ public class UniversalDialog {
             return this;
         }
 
-        public Builder customDialog(ICustomDialog customDialog) {
+        public Builder customDialog(AbsCustomDialog customDialog) {
             this.customDialog = customDialog;
             return this;
         }
 
-        public Builder customPopupWindow(ICustomPopupWindow customPopupWindow) {
+        public Builder customPopupWindow(AbsCustomPopupWindow customPopupWindow) {
             this.customPopupWindow = customPopupWindow;
             return this;
         }

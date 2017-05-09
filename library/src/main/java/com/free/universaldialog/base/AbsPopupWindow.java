@@ -26,6 +26,12 @@ public abstract class AbsPopupWindow implements IDialog {
         showLocation(universalDialog);
     }
 
+    @Override
+    public void cancel() {
+        if (mPopupWindow != null && mPopupWindow.isShowing())
+            mPopupWindow.dismiss();
+    }
+
     protected void showLocation(UniversalDialog universalDialog) {
         mPopupWindow.showAsDropDown(universalDialog.anchorView);
     }
