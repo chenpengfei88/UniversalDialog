@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         UniversalDialog.Builder builder = new UniversalDialog.Builder(this);
         switch (v.getId()) {
             case R.id.textview_alert:
-                 builder.setTitle("提示")
+                 builder.setDialogType(UniversalDialog.DIALOG_ALTER_TYPE).setTitle("提示")
                            .setMessage("确认关掉我吗？")
                             .setSureButton("确定")
                             .setCancelButton("不关")
@@ -40,8 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 public void onSure(View view) {
                                     Toast.makeText(MainActivity.this, "Sure", Toast.LENGTH_SHORT).show();
                                 }
-                            })
-                             .create().show();
+                            }).create().show();
                 break;
             case R.id.textview_select_alert:
                 builder.setDialogType(UniversalDialog.DIALOG_ALTER_SELECT_TYPE)
